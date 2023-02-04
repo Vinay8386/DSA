@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-//Convert string to local date time
+//Convert string to local date time..
 public class TestDate {
 	public static void main(String[] args) {
 		
