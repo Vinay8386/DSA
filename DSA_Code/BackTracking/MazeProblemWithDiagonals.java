@@ -1,0 +1,54 @@
+package BackTracking;
+
+import java.util.ArrayList;
+
+//start coordinate (rowStart, colStart) = (0, 0)
+//destination coordinate (rowDest, colDest) = (3,3)
+//Count number of path
+//return lists of all the path
+//Here D=down, K=diagonals, R=right
+public class MazeProblemWithDiagonals {
+    public static void main(String[] args) {
+        int[][] maze=
+                {
+                        {0,0,0},
+                        {0,0,0},
+                        {0,0,0}
+                };
+        int row=0, col=0;
+        System.out.println(countPath(maze,row,col));
+        System.out.println(printPath(maze," ",row,col));
+    }
+    //return number of a path
+    static int countPath(int[][] maze, int row, int col) {
+        //base condition
+        if(row== maze.length-1 || col== maze.length-1){
+            return 1;
+        }
+        int down=countPath(maze,row+1,col);
+        int diagonals=countPath(maze,row+1,col+1);
+        int right=countPath(maze,row,col+1);
+        return down+diagonals+right;
+    }
+
+    //Print list of all the path
+    static ArrayList<String> printPath(int[][] maze,String p, int row, int col) {
+        //base condition
+        if(row== maze.length-1 && col== maze.length-1){
+            ArrayList<String> list=new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+        ArrayList<String> path=new ArrayList<>();
+        if(row<maze.length-1){
+            path.addAll(printPath(maze,p+'D',row+1,col));
+        }
+        if(row< maze.length-1 && col< maze.length-1){
+            path.addAll(printPath(maze,p+'K',row+1,col+1));
+        }
+        if(col< maze.length-1){
+            path.addAll(printPath(maze,p+'R',row,col+1));
+        }
+        return path;
+    }
+}
